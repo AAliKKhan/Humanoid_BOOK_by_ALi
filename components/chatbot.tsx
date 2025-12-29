@@ -76,7 +76,7 @@ export default function Chatbot({
         const token = await getToken()
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://ali67895555-backend.hf.space';
       
-      const response = await fetch(`${apiUrl}/chat/`, {
+      const response = await fetch(`${apiUrl.replace(/\/$/, '')}/chat/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
