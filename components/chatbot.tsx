@@ -76,25 +76,14 @@ export default function Chatbot({
         const token = await getToken()
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://ali67895555-backend.hf.space';
       
-      // const response = await fetch(`${apiUrl}/chat/`, {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     "Authorization": `Bearer ${token}`,
-      //   },
-      //   body: JSON.stringify({ user_message: { role: 'user', content: textToSend } }),
-      // });
-      const response = await fetch(apiUrl, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "Authorization": `Bearer ${token}`,
-  },
-  body: JSON.stringify({
-    user_message: { role: "user", content: textToSend },
-  }),
-});
-
+      const response = await fetch(`${apiUrl}/chat/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({ user_message: { role: 'user', content: textToSend } }),
+      });
   
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
