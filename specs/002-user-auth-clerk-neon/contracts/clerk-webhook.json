@@ -1,0 +1,73 @@
+{
+  "description": "Clerk Webhook payload for user-related events",
+  "type": "object",
+  "required": ["data", "object", "type"],
+  "properties": {
+    "data": {
+      "type": "object",
+      "description": "The Clerk user object details",
+      "required": ["id", "email_addresses", "first_name", "last_name", "profile_image_url", "created_at", "updated_at"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique ID of the user in Clerk"
+        },
+        "email_addresses": {
+          "type": "array",
+          "description": "List of email addresses for the user",
+          "items": {
+            "type": "object",
+            "properties": {
+              "email_address": { "type": "string" },
+              "id": { "type": "string" },
+              "linked_to": { "type": "array", "items": { "type": "object" } },
+              "object": { "type": "string" },
+              "verification": {
+                "type": "object",
+                "properties": {
+                  "status": { "type": "string" },
+                  "strategy": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "first_name": {
+          "type": "string",
+          "nullable": true,
+          "description": "User's first name"
+        },
+        "last_name": {
+          "type": "string",
+          "nullable": true,
+          "description": "User's last name"
+        },
+        "profile_image_url": {
+          "type": "string",
+          "description": "URL to the user's profile image"
+        },
+        "created_at": {
+          "type": "integer",
+          "description": "Unix timestamp of creation"
+        },
+        "updated_at": {
+          "type": "integer",
+          "description": "Unix timestamp of last update"
+        },
+        "username": {
+          "type": "string",
+          "nullable": true,
+          "description": "User's username"
+        }
+      }
+    },
+    "object": {
+      "type": "string",
+      "description": "Type of object, e.g., 'event'"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of event, e.g., 'user.created', 'user.updated', 'user.deleted'"
+    }
+  }
+}
